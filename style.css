@@ -1,0 +1,131 @@
+/*Transitions*/
+@keyframes transition-after {
+    from {
+        background: transparent;
+    }
+    to {
+        background:#1d1d1d;
+    }
+}
+@keyframes transition-before {
+    from {
+        background: #1d1d1d;
+    }
+    to {
+        background:transparent;
+    }
+}
+
+/*right to center animation*/
+@keyframes r2c {
+    0% {
+        right: 0;
+        top: 0;
+        width: 200%;
+        transform: rotate(0) scale(1);
+        animation-timing-function: linear;
+    }
+
+    30% {
+        right: -15%;
+        top: -28%;
+        width: 115%;
+        transform: rotate(0) scale(1);
+        animation-timing-function: linear;
+    }
+
+    100% {
+        right: -50%;
+        top: -60%;
+        width: 200%;
+        transform: rotate(30deg) scale(1.05);
+        animation-timing-function: linear;
+    }
+}
+
+/* center right to center left animation */
+@keyframes cr2cl {
+    0% {
+        right: -64%;
+        top: -51%;
+        width: 208%;
+        animation-timing-function: ease-in;
+        transform: rotate(0);
+    }
+    30% {
+        right: -43%;
+        top: -52%;
+        width: 170%;
+        animation-timing-function: ease-out;
+        transform: rotate(0);
+    }
+    85% {
+        right: -12%;
+        top: -43%;
+        width: 150%;
+        animation-timing-function: ease-in;
+        transform: rotate(0);
+    }
+    100% {
+        right: -27%;
+        top: -58%;
+        width: 130%;
+        transform: rotate(30deg) scale(1.5);
+        animation-timing-function: ease-out;
+    }
+}
+
+/*Hide scrollbar*/
+body {
+    overflow: hidden; 
+}
+
+/*Transition 8s*/
+.transition-after {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    animation-name: transition-after;
+    animation-delay: 9.5s;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;  
+}
+
+.transition-before {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    background-color: #1d1d1d;
+    animation-name: transition-before;
+    animation-delay: 0s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;  
+}
+/*right to center*/
+.right-to-center {
+    position: absolute;
+    animation-name: r2c;
+    right: -50%;
+    top: -60%;
+    width: 200%;
+    animation-duration: 10s;
+}
+
+/* center right to center left*/
+.center-right-to-center-left {
+    position: absolute;
+    animation-name: cr2cl;
+    right: -27%;
+    top: -58%;
+    width: 170%;
+    transform: rotate(30deg) scale(1.5);
+    animation-duration: 10s;
+}
