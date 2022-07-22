@@ -28,17 +28,17 @@
 
     30% {
         right: -15%;
-        top: -28%;
+        top: -20%;
         width: 115%;
         transform: rotate(0) scale(1);
         animation-timing-function: linear;
     }
 
     100% {
-        right: -50%;
-        top: -60%;
-        width: 200%;
-        transform: rotate(30deg) scale(1.05);
+        right: 0%;
+        top: 10%;
+        width: 100%;
+        transform: rotate(30deg) scale(1.5);
         animation-timing-function: linear;
     }
 }
@@ -48,36 +48,60 @@
     0% {
         right: -64%;
         top: -51%;
-        width: 208%;
+        width: 190%;
         animation-timing-function: ease-in;
         transform: rotate(0);
     }
     30% {
         right: -43%;
-        top: -52%;
-        width: 170%;
+        top: -42%;
+        width: 160%;
         animation-timing-function: ease-out;
         transform: rotate(0);
     }
     85% {
         right: -12%;
-        top: -43%;
-        width: 150%;
+        top: -33%;
+        width: 140%;
         animation-timing-function: ease-in;
         transform: rotate(0);
     }
     100% {
         right: -27%;
         top: -58%;
-        width: 130%;
-        transform: rotate(30deg) scale(1.5);
+        width: 110%;
+        transform: rotate(30deg) scale(2);
         animation-timing-function: ease-out;
     }
 }
 
-/*Hide scrollbar*/
+/*color zoom out*/
+@keyframes czo {
+    0% {
+        filter: grayscale(100%);
+        transform: rotate(0) scale(2);
+        animation-timing-function: ease-in;
+    }
+    30% {
+        transform: rotate(5deg) scale(1.7);
+        animation-timing-function: ease-out;
+    }
+    60% {
+        transform: rotate(10deg) scale(1.3);
+        animation-timing-function: ease-in;
+    }
+    100% {
+        transform: rotate(15deg) scale(1.8);
+        animation-timing-function: ease-out;
+    }
+}
+
+/*Hide scrollbar and image background*/
 body {
     overflow: hidden; 
+    background-color: #000000;
+    height: 100vh;
+    width: 100%;
 }
 
 /*Transition 8s*/
@@ -109,6 +133,11 @@ body {
     animation-duration: 1s;
     animation-fill-mode: forwards;  
 }
+
+/***********
+Main Classes
+************/
+
 /*right to center*/
 .right-to-center {
     position: absolute;
@@ -128,4 +157,14 @@ body {
     width: 170%;
     transform: rotate(30deg) scale(1.5);
     animation-duration: 10s;
+}
+
+/*color zoom out*/
+.color-zoom-out {
+    position: absolute;
+    animation-name: czo;
+    height: 100vh;
+    width: 100%;
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
 }

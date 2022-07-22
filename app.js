@@ -6,6 +6,18 @@ const animationData = [
     {
         className: 'center-right-to-center-left', 
         image: '2.jpg'
+    },
+    {
+        className: 'color-zoom-out', 
+        image: '3.jpg'
+    },
+    {
+        className: 'right-to-center', 
+        image: '4.jpg'
+    },
+    {
+        className: 'color-zoom-out', 
+        image: '5.jpg'
     } 
 ]
 
@@ -29,18 +41,34 @@ const createSlide = (image, className) => {
     root.append(transitionAfter);
 }
 
+
 // arrange slide data
-animationData.forEach((data, key) => {
-    if(!key) {
-        createSlide(data.image, data.className);
-    } else {
-        setTimeout(() => {
-            document.querySelector('img').remove();
-            document.querySelectorAll('span').forEach(el => el.remove());
-            createSlide(data.image, data.className);
-        }, 10000)
+const arrangeSlide = (slideCount) => {
+
+     // remove previous slide's tags
+     if(document.querySelector('#root>img')){
+        document.querySelector('img').remove();
+        document.querySelectorAll('span').forEach(el => el.remove());
     }
-})
+
+    // create slide
+    if(animationData[slideCount]) {
+        // create slide
+        createSlide(animationData[slideCount].image, animationData[slideCount].className);
+    } else {
+        // if all slide done, then reset slide count and create slide from first
+        slideCount = 0;
+        createSlide(animationData[slideCount].image, animationData[slideCount].className);
+    }
+    
+    // play next slide
+    document.querySelector('img').addEventListener('animationend', function(){
+        arrangeSlide(slideCount+1);
+    })
+}
+window.onload = () => {
+    arrangeSlide(0)
+}
 
 
 
