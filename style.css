@@ -1,19 +1,36 @@
-@font-face{font-family:"quranic-font";src:url("https://previous.quran.com/assets/quran_fonts/me_quran/me_quran-40c3436c134c511aba4c25355f70915ee2a0b8a850080691742aabd5216dfdbe.ttf");font-display:swap}
+@font-face {
+    font-family: "quranic-font";
+    src: url("https://previous.quran.com/assets/quran_fonts/me_quran/me_quran-40c3436c134c511aba4c25355f70915ee2a0b8a850080691742aabd5216dfdbe.ttf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: 'SolaimanLipi';
+    src: url('./fonts/SolaimanLipiNormal.svg#SolaimanLipiNormal') format('svg'),
+        url('./fonts/SolaimanLipiNormal.ttf') format('truetype'),
+        url('./fonts/SolaimanLipiNormal.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*Transitions*/
 @keyframes transition-after {
     from {
         background: transparent;
     }
+
     to {
-        background:#1d1d1d;
+        background: #1d1d1d;
     }
 }
+
 @keyframes transition-before {
     from {
         background: #1d1d1d;
     }
+
     to {
-        background:transparent;
+        background: transparent;
     }
 }
 
@@ -53,6 +70,7 @@
         animation-timing-function: ease-in;
         transform: rotate(0);
     }
+
     30% {
         right: -43%;
         top: -42%;
@@ -60,6 +78,7 @@
         animation-timing-function: ease-out;
         transform: rotate(0);
     }
+
     85% {
         right: -12%;
         top: -33%;
@@ -67,6 +86,7 @@
         animation-timing-function: ease-in;
         transform: rotate(0);
     }
+
     100% {
         right: -27%;
         top: -58%;
@@ -83,43 +103,51 @@
         transform: rotate(15deg) scale(2);
         animation-timing-function: ease-in;
     }
+
     30% {
         transform: rotate(7.5deg) scale(1.6);
         animation-timing-function: ease-out;
     }
+
     60% {
         transform: rotate(0deg) scale(1);
         animation-timing-function: ease-in;
     }
+
     100% {
         transform: rotate(15deg) scale(1.8);
         animation-timing-function: ease-out;
     }
 }
+
 /*color zoom in*/
 @keyframes czi {
     0% {
-        filter: grayscale(0%); 
+        filter: grayscale(0%);
         transform: scale(1) rotate(0deg);
         animation-timing-function: ease-in;
     }
+
     50% {
         filter: grayscale(30%);
         transform: scale(1.3) rotate(5deg);
         animation-timing-function: ease-out;
     }
+
     100% {
         filter: grayscale(100%);
         transform: scale(2) rotate(15deg);
     }
 }
+
 /*basic style*/
 body {
-    overflow: hidden; 
+    overflow: hidden;
     background-color: #000000;
     height: 100vh;
     width: 100%;
 }
+
 #root::before {
     content: '';
     position: absolute;
@@ -130,6 +158,7 @@ body {
     left: 0;
     z-index: 2;
 }
+
 #root::after {
     content: '';
     position: absolute;
@@ -142,13 +171,13 @@ body {
 }
 
 .arabic {
-    font-family:"quranic-font";
+    font-family: "quranic-font";
     color: white;
     font-size: 30px;
     z-index: 3;
     position: absolute;
-    padding: 20px 20px;
-    width: calc( 100% - 40px );
+    padding: 20px 50px;
+    width: calc(100% - 100px);
     left: 0;
     bottom: 0;
     min-height: 100px;
@@ -158,6 +187,23 @@ body {
     text-align: right;
     background-color: #000000;
 }
+
+.translation {
+    font-family: 'SolaimanLipi';
+    color: white;
+    font-size: 40px;
+    z-index: 3;
+    position: absolute;
+    padding: 20px 100px;
+    width: calc(100% - 200px);
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    text-shadow: 0 0 15px #1b1b1b, 0 0 15px #1b1b1b;
+}
+
 .gray-overlay {
     position: absolute;
     z-index: 1;
@@ -179,7 +225,7 @@ body {
     animation-name: transition-after;
     animation-delay: 9.5s;
     animation-duration: 0.5s;
-    animation-fill-mode: forwards;  
+    animation-fill-mode: forwards;
 }
 
 .transition-before {
@@ -194,7 +240,7 @@ body {
     animation-name: transition-before;
     animation-delay: 0s;
     animation-duration: 1s;
-    animation-fill-mode: forwards;  
+    animation-fill-mode: forwards;
 }
 
 

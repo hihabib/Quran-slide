@@ -76,22 +76,77 @@ const arrangeSlide = (slideCount) => {
     })
 }
 
+// convert english number to bengali number
+function convertToBengaliNum(engNum) {
+    const engNumArray = Array.from(engNum.toString()).map(el => {
+        switch(el) {
+            case '1':
+                return '১';
+            case '2':
+                return '২';
+            case '3':
+                return '৩';
+            case '4':
+                return '৪';
+            case '5':
+                return '৫';
+            case '6':
+                return '৬';
+            case '7':
+                return '৭';
+            case '8':
+                return '৮';
+            case '9':
+                return '৯';
+            case '0':
+                return '০';
+        }
+    });
+    return engNumArray.join('');
+}
+
+
 function changeAyah(verses, ayahCount) {
+    // arabic
     const ayah = document.createElement('div');
     ayah.classList.add('arabic');
 
+    //translation
+    const initialTranslatedAyah = document.createElement('div');
+    initialTranslatedAyah.classList.add('translation');
+
     // remove previous ayah element and create next ayah element
     document.addEventListener('keydown',  function(event) {
+
+        // add new ayah element
         if(event.key === 'ArrowRight') {
-            console.log(ayahCount);
+            // remove previous ayah element
             document.querySelector('.arabic').remove();
+            document.querySelector('.translation').remove();
+
+            //arabic
             ayah.innerText = verses[ayahCount + 1].text_uthmani;
             document.querySelector('#root').append(ayah);
+
+            //translation
+            initialTranslatedAyah.innerText = convertToBengaliNum(ayahCount + 2) + '. ' + verses[ayahCount + 1].translations[0].text;
+            document.querySelector('#root').append(initialTranslatedAyah);
+           
+
             ayahCount += 1;
         } else if(event.key === 'ArrowLeft'){
+            // remove previous ayah element
             document.querySelector('.arabic').remove();
+            document.querySelector('.translation').remove();
+
+            //arabic
             ayah.innerText = verses[ayahCount - 1].text_uthmani;
             document.querySelector('#root').append(ayah);
+
+            //translation
+            initialTranslatedAyah.innerText =  convertToBengaliNum(ayahCount) + '. ' + verses[ayahCount - 1].translations[0].text;
+            document.querySelector('#root').append(initialTranslatedAyah);
+
             ayahCount -= 1;
         }
     })
@@ -109,16 +164,28 @@ window.onload = () => {
     .then (data => {
         let verses = data.verses;
         // initial ayah number
-        const initialVerseNumber = 255;
+        const initialVerseNumber = 1;
         const ayahCount = (initialVerseNumber - 1);
 
+        /*
+        Arabic
+        */
+        
         // show ayah for first load
         const initialAyah = document.createElement('div');
         initialAyah.classList.add('arabic');
         initialAyah.innerText = verses[ayahCount].text_uthmani;
         document.querySelector('#root').append(initialAyah);
 
-        //show ayah
+        /*
+        Translation
+        */
+        const initialTranslatedAyah = document.createElement('div');
+        initialTranslatedAyah.classList.add('translation');
+        initialTranslatedAyah.innerText = convertToBengaliNum(initialVerseNumber) + '. ' + verses[ayahCount].translations[0].text;
+        document.querySelector('#root').append(initialTranslatedAyah);
+
+        //Show ayah deta
         changeAyah(verses, ayahCount)
     });
 
