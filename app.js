@@ -75,8 +75,53 @@ const arrangeSlide = (slideCount) => {
         arrangeSlide(slideCount+1);
     })
 }
+
+function changeAyah(verses, ayahCount) {
+    const ayah = document.createElement('div');
+    ayah.classList.add('arabic');
+
+    // remove previous ayah element and create next ayah element
+    document.addEventListener('keydown',  function(event) {
+        if(event.key === 'ArrowRight') {
+            console.log(ayahCount);
+            document.querySelector('.arabic').remove();
+            ayah.innerText = verses[ayahCount + 1].text_uthmani;
+            document.querySelector('#root').append(ayah);
+            ayahCount += 1;
+        } else if(event.key === 'ArrowLeft'){
+            document.querySelector('.arabic').remove();
+            ayah.innerText = verses[ayahCount - 1].text_uthmani;
+            document.querySelector('#root').append(ayah);
+            ayahCount -= 1;
+        }
+    })
+        
+}
 window.onload = () => {
-    arrangeSlide(0)
+    const grayOverlay = document.createElement('div');
+    grayOverlay.classList.add('gray-overlay');
+    document.querySelector('#root').append(grayOverlay);
+    arrangeSlide(0);
+    
+    //get quran verses
+    fetch('https://api.quran.com/api/v4/verses/by_chapter/2?translations=163&page=1&per_page=300&fields=text_uthmani')
+    .then (res => res.json())
+    .then (data => {
+        let verses = data.verses;
+        // initial ayah number
+        const initialVerseNumber = 255;
+        const ayahCount = (initialVerseNumber - 1);
+
+        // show ayah for first load
+        const initialAyah = document.createElement('div');
+        initialAyah.classList.add('arabic');
+        initialAyah.innerText = verses[ayahCount].text_uthmani;
+        document.querySelector('#root').append(initialAyah);
+
+        //show ayah
+        changeAyah(verses, ayahCount)
+    });
+
 }
 
 
