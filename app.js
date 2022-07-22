@@ -9,7 +9,7 @@
 
 const animationData = [
     {
-        className: 'right-to-center', 
+        className: 'color-zoom-out', 
         image: '1.jpg'
     }, 
     {
