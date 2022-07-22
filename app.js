@@ -4,7 +4,6 @@
 2. color-zoom-out
 3. right-to-center
 4. center-right-to-center-left
-5. right-to-center
 */
 
 const animationData = [
