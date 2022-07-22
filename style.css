@@ -110,11 +110,13 @@
     }
 
     60% {
+        filter: grayscale(0%);
         transform: rotate(0deg) scale(1);
         animation-timing-function: ease-in;
     }
 
     100% {
+        filter: grayscale(100%);
         transform: rotate(15deg) scale(1.8);
         animation-timing-function: ease-out;
     }
