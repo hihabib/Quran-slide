@@ -78,7 +78,7 @@ const arrangeSlide = (slideCount) => {
 
 // convert english number to bengali number
 function convertToBengaliNum(engNum) {
-    const engNumArray = Array.from(engNum.toString()).map(el => {
+    const bnNumArray = Array.from(engNum.toString()).map(el => {
         switch(el) {
             case '1':
                 return '১';
@@ -102,7 +102,7 @@ function convertToBengaliNum(engNum) {
                 return '০';
         }
     });
-    return engNumArray.join('');
+    return bnNumArray.join('');
 }
 
 
