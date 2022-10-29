@@ -27,7 +27,58 @@ const animationData = [
         className: 'color-zoom-in', 
         image: '5.jpg'
     },
-    
+    {
+        className: 'color-zoom-out', 
+        image: '6.jpg'
+    }, 
+    {
+        className: 'center-right-to-center-left', 
+        image: '7.jpg'
+    },
+    {
+        className: 'color-zoom-out', 
+        image: '8.jpg'
+    },
+    {
+        className: 'right-to-center', 
+        image: '9.jpg'
+    },
+    {
+        className: 'color-zoom-in', 
+        image: '10.jpg'
+    },
+    {
+        className: 'color-zoom-out', 
+        image: '11.jpg'
+    }, 
+    {
+        className: 'center-right-to-center-left', 
+        image: '12.jpg'
+    },
+    {
+        className: 'color-zoom-out', 
+        image: '13.jpg'
+    },
+    {
+        className: 'right-to-center', 
+        image: '14.jpg'
+    },
+    {
+        className: 'color-zoom-in', 
+        image: '15.jpg'
+    },
+    {
+        className: 'color-zoom-out', 
+        image: '16.jpg'
+    }, 
+    {
+        className: 'center-right-to-center-left', 
+        image: '17.jpg'
+    },
+    {
+        className: 'color-zoom-out', 
+        image: '18.jpg'
+    }
 ]
 
 // create slide
@@ -159,10 +210,21 @@ window.onload = () => {
     arrangeSlide(0);
     
     //get quran verses
-    fetch('https://api.quran.com/api/v4/verses/by_chapter/2?translations=163&page=1&per_page=300&fields=text_uthmani')
+    // Sura / surah / chapter number
+    const surahNumber = 78;
+    fetch('https://api.quran.com/api/v4/verses/by_chapter/'+surahNumber+'?translations=213&page=1&per_page=300&fields=text_uthmani')
     .then (res => res.json())
     .then (data => {
         let verses = data.verses;
+
+        // remove "[]" / reference from translation
+        verses.forEach(el => {
+            el.translations.forEach(translation => {
+                let ayah = translation.text.split(' ').filter(word => !word.startsWith('['))
+                translation.text = ayah.join(' ');
+            })
+        })
+
         // initial ayah number
         const initialVerseNumber = 1;
         const ayahCount = (initialVerseNumber - 1);
